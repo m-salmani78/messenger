@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'dark_theme.dart';
 import 'light_theme.dart';
 
-/// {@template brightness_cubit}
-/// A simple [Cubit] which manages the [ThemeData] as its state.
-/// {@end template}
-class ThemeCubit extends Cubit<ThemeData> {
-  /// {@macro brightness_cubit}
-  ThemeCubit() : super(_lightTheme);
+Color kPrimaryColor = Colors.deepPurple;
+Color kAccentColor = Colors.deepPurpleAccent;
 
-  static final _lightTheme = lightTheme();
+abstract class IThemeConfig {
+  ThemeData get themeData;
+  Color get textField;
+  Color get bottomAppBar;
+  Color get myMessage;
+  Color get othersMessage;
+}
 
-  static final _darkTheme = darkTheme();
+class ThemeConfig with ChangeNotifier {
+  IThemeConfig theme = LightTheme();
 
-  /// Toggles the current brightness between light and dark.
-  void toggleTheme() {
-    emit(state.brightness == Brightness.dark ? _lightTheme : _darkTheme);
+  void toggleTheme(BuildContext context) {
+    theme = Theme.of(context).brightness == Brightness.dark
+        ? LightTheme()
+        : DarkTheme();
+    notifyListeners();
   }
 }

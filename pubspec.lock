@@ -9,7 +9,7 @@ packages:
     source: hosted
     version: "2.5.0"
   bloc:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: bloc
       url: "https://pub.dartlang.org"
@@ -110,7 +110,7 @@ packages:
     source: hosted
     version: "1.8.0"
   provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: provider
       url: "https://pub.dartlang.org"
