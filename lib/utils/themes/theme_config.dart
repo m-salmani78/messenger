@@ -24,3 +24,11 @@ class ThemeConfig with ChangeNotifier {
     notifyListeners();
   }
 }
+
+OutlineInputBorder customOutlineInputBorder(Color borderColor,
+    {double width = 1.0, double radius = 28}) =>
+    OutlineInputBorder(
+      borderRadius: BorderRadius.circular(radius),
+      borderSide: BorderSide(color: borderColor, width: width),
+      // gapPadding: 6,
+    );

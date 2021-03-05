@@ -15,6 +15,7 @@ class LightTheme implements IThemeConfig {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.white,
     ),
+    appBarTheme: AppBarTheme(brightness: Brightness.dark),
     brightness: Brightness.light,
   );
 

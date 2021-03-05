@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/models/message_model.dart';
 import 'package:messenger/screens/chat_room/repos/message_manager.dart';
+import 'package:messenger/utils/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 
@@ -68,6 +69,10 @@ class _TextComposerState extends State<TextComposer>
                   minLines: 1,
                   decoration: InputDecoration(
                     hintText: 'Send a message',
+                    filled: true,
+                    fillColor: Theme.of(context).scaffoldBackgroundColor,
+                    border:
+                        customOutlineInputBorder(Theme.of(context).accentColor),
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
