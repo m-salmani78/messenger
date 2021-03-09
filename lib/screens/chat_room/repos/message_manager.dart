@@ -5,11 +5,11 @@ import 'message_handler_interface.dart';
 
 class MessageHandler with ChangeNotifier {
   final IMessagesHandler handler;
-  List<Message> _messages;
+  List<Message> _messages = [];
 
   List<Message> get messages => _messages;
 
-  MessageHandler(this.handler, {List<Message> messages}) {
+  MessageHandler(this.handler, {List<Message>? messages}) {
     _messages = messages ?? [];
   }
 

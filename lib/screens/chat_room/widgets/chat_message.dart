@@ -11,7 +11,7 @@ class MessageView extends StatelessWidget {
   final bool alignRight;
 
   MessageView({
-    @required this.message,
+    required this.message,
     this.name = "deleted account",
     this.alignRight = true,
   });
@@ -78,17 +78,17 @@ class MessageView extends StatelessWidget {
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText1
-                                      .copyWith(color: Colors.blue)),
+                                      ?.copyWith(color: Colors.blue)),
                         ),
                         Container(
                           child: message.imageFile == null
                               ? null
-                              : Image.file(message.imageFile),
+                              : Image.file(message.imageFile!),
                         ),
                         Container(
-                          padding: EdgeInsets.all(message.text == null ? 0 : 8),
+                          padding: EdgeInsets.all(message.text.isEmpty ? 0 : 8),
                           child:
-                              message.text == null ? null : Text(message.text),
+                              message.text.isEmpty ? null : Text(message.text),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(

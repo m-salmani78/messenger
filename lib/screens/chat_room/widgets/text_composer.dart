@@ -20,8 +20,8 @@ class TextComposer extends StatefulWidget {
 class _TextComposerState extends State<TextComposer>
     with TickerProviderStateMixin {
   bool _isComposing = false;
-  AnimationController expandAnimCtrl;
-  AnimationController composeAnimCtrl;
+  late final AnimationController _expandAnimCtrl;
+  late final AnimationController _composeAnimCtrl;
 
   TextEditingController _textController = TextEditingController();
 
@@ -29,9 +29,9 @@ class _TextComposerState extends State<TextComposer>
     if (value == _isComposing) return;
     _isComposing = value;
     if (!_isComposing) {
-      composeAnimCtrl.forward();
+      _composeAnimCtrl.forward();
     } else {
-      composeAnimCtrl.reverse();
+      _composeAnimCtrl.reverse();
       changeExpansion(false);
     }
   }
@@ -39,10 +39,17 @@ class _TextComposerState extends State<TextComposer>
   @override
   void initState() {
     super.initState();
-    expandAnimCtrl =
+    _expandAnimCtrl =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    composeAnimCtrl = AnimationController(
+    _composeAnimCtrl = AnimationController(
         vsync: this, duration: Duration(milliseconds: 200), value: 1);
+  }
+
+  @override
+  void dispose() {
+    _composeAnimCtrl.dispose();
+    _expandAnimCtrl.dispose();
+    super.dispose();
   }
 
   @override
@@ -96,7 +103,7 @@ class _TextComposerState extends State<TextComposer>
                 axis: Axis.horizontal,
                 axisAlignment: -1,
                 sizeFactor: CurvedAnimation(
-                  parent: composeAnimCtrl,
+                  parent: _composeAnimCtrl,
                   curve: Curves.easeInOut,
                   reverseCurve: Curves.easeInOut,
                 ),
@@ -104,20 +111,21 @@ class _TextComposerState extends State<TextComposer>
                   visualDensity: VisualDensity.compact,
                   icon: AnimatedBuilder(
                     animation: CurvedAnimation(
-                      parent: expandAnimCtrl,
+                      parent: _expandAnimCtrl,
                       curve: Curves.fastOutSlowIn,
                     ),
                     child: Icon(Icons.keyboard_arrow_down),
                     builder: (context, child) => Transform.rotate(
-                        child: child, angle: expandAnimCtrl.value * -math.pi),
+                        child: child, angle: _expandAnimCtrl.value * -math.pi),
                   ),
-                  onPressed: () => changeExpansion(!expandAnimCtrl.isCompleted),
+                  onPressed: () =>
+                      changeExpansion(!_expandAnimCtrl.isCompleted),
                 ),
               ),
             ],
           ),
           MessageOptionsView(
-            animationController: expandAnimCtrl,
+            animationController: _expandAnimCtrl,
             sendMessage: (handler, file) => sendMessage(handler, file: file),
           ),
         ],
@@ -127,12 +135,12 @@ class _TextComposerState extends State<TextComposer>
 
   changeExpansion(bool expand) {
     if (expand)
-      expandAnimCtrl.forward();
+      _expandAnimCtrl.forward();
     else
-      expandAnimCtrl.reverse();
+      _expandAnimCtrl.reverse();
   }
 
-  sendMessage(MessageHandler handler, {File file, String text}) {
+  sendMessage(MessageHandler handler, {File? file, String? text}) {
     var message = Message(
       text: text,
       imageFile: file,

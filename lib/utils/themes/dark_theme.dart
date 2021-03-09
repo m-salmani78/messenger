@@ -11,7 +11,7 @@ class DarkTheme implements IThemeConfig {
 
   @override
   ThemeData themeData = ThemeData(
-    accentColor: kAccentColor,
+    accentColor: Colors.deepPurpleAccent,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.black,
     ),
@@ -19,10 +19,10 @@ class DarkTheme implements IThemeConfig {
   );
 
   @override
-  Color get scaffoldBackground => Colors.grey[850];
+  Color get scaffoldBackground => Colors.grey[850] ?? Colors.white10;
 
   @override
-  Color get bottomAppBar => Colors.grey[900];
+  Color get bottomAppBar => Colors.grey[900] ?? Colors.black26;
 
   @override
   Color get myMessage => themeData.accentColor.withOpacity(0.6);

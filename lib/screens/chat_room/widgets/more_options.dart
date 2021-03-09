@@ -11,7 +11,10 @@ class MessageOptionsView extends StatelessWidget {
   final AnimationController animationController;
   final Function(MessageHandler, File) sendMessage;
 
-  const MessageOptionsView({this.animationController, this.sendMessage});
+  const MessageOptionsView({
+    required this.animationController,
+    required this.sendMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class MessageOptionsView extends StatelessWidget {
             tooltip: "Picture",
             onPressed: () {
               getImage().then((value) {
-                if (value == null) return;
+                // if (value == null) return;
                 sendMessage(handler, value);
               });
             },

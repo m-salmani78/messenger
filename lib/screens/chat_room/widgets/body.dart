@@ -10,7 +10,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> with TickerProviderStateMixin {
-
   @override
   Widget build(BuildContext context) {
     final messages = Provider.of<MessageHandler>(context).messages;
@@ -23,6 +22,7 @@ class _BodyState extends State<Body> with TickerProviderStateMixin {
           child: MessageView(
             name: "Mahdi",
             message: message,
+            alignRight: message.id.isEven,
           ),
         );
       },

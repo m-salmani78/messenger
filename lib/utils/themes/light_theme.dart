@@ -10,7 +10,7 @@ class LightTheme implements IThemeConfig {
 
   @override
   ThemeData themeData = ThemeData(
-    primarySwatch: kPrimaryColor,
+    primarySwatch: Colors.deepPurple,
     scaffoldBackgroundColor: Colors.white,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.white,
@@ -20,7 +20,7 @@ class LightTheme implements IThemeConfig {
   );
 
   @override
-  Color get scaffoldBackground => Colors.deepPurple[50];
+  Color get scaffoldBackground => Colors.deepPurple[50]??Colors.white;
 
   @override
   Color get bottomAppBar => themeData.primaryColor.withOpacity(0.1);

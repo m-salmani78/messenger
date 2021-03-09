@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'dark_theme.dart';
 import 'light_theme.dart';
 
-Color kPrimaryColor = Colors.deepPurple;
-Color kAccentColor = Colors.deepPurpleAccent;
 
 abstract class IThemeConfig {
   ThemeData get themeData;
