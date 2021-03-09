@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:messenger/screens/chat_room/chat_room.dart';
+import 'package:messenger/screens/home_page/home.dart';
 import 'package:messenger/utils/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: state.theme.themeData,
-            home: ChatRoomScreen(),
+            home: HomePage(),
           );
         },
       ),
