@@ -20,14 +20,14 @@ class LightTheme implements IThemeConfig {
   );
 
   @override
-  Color get bottomAppBar => Colors.deepPurple[50];
+  Color get scaffoldBackground => Colors.deepPurple[50];
 
   @override
-  Color get textField => Colors.white;
+  Color get bottomAppBar => themeData.primaryColor.withOpacity(0.1);
 
   @override
-  Color get myMessage => themeData.primaryColorLight;
+  Color get myMessage => themeData.primaryColor.withOpacity(0.4);
 
   @override
-  Color get othersMessage => Colors.white;
+  Color get othersMessage => Colors.white.withOpacity(0.4);
 }

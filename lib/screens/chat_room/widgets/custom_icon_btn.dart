@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends IconButton {
@@ -12,6 +13,6 @@ class CustomIconButton extends IconButton {
             onPressed: onPressed,
             tooltip: tooltip,
             visualDensity: visualDensity,
-            splashRadius: 24,
+            splashRadius: 26.0,
             splashColor: Colors.transparent);
 }

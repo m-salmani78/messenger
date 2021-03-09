@@ -8,9 +8,13 @@ Color kAccentColor = Colors.deepPurpleAccent;
 
 abstract class IThemeConfig {
   ThemeData get themeData;
-  Color get textField;
+
   Color get bottomAppBar;
+
+  Color get scaffoldBackground;
+
   Color get myMessage;
+
   Color get othersMessage;
 }
 
@@ -26,9 +30,8 @@ class ThemeConfig with ChangeNotifier {
 }
 
 OutlineInputBorder customOutlineInputBorder(Color borderColor,
-    {double width = 1.0, double radius = 28}) =>
+        {double width = 2.0, double radius = 24}) =>
     OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
       borderSide: BorderSide(color: borderColor, width: width),
-      // gapPadding: 6,
     );

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:messenger/constants/constants.dart';
+import 'package:messenger/constants/app_constants.dart';
 import 'package:messenger/models/message_model.dart';
 import 'package:messenger/screens/chat_room/repos/message_manager.dart';
+import 'package:messenger/utils/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 
 class MessageView extends StatelessWidget {
   final Message message;
   final String name;
-  final bool isMyMessage;
+  final bool alignRight;
 
   MessageView({
     @required this.message,
     this.name = "deleted account",
-    this.isMyMessage = true,
+    this.alignRight = true,
   });
 
   @override
@@ -28,23 +29,24 @@ class MessageView extends StatelessWidget {
       child: FadeTransition(
         opacity: animation,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+          padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment:
-                isMyMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
+                alignRight ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
               Container(
                 padding: EdgeInsets.only(bottom: 4),
-                child: isMyMessage ? null : CircleAvatar(child: Text(name[0])),
+                child: alignRight ? null : CircleAvatar(child: Text(name[0])),
               ),
               Card(
+                elevation: 2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    bottomRight: isMyMessage
+                    bottomRight: alignRight
                         ? Radius.zero
                         : Radius.circular(cardCornerRadius),
-                    bottomLeft: isMyMessage
+                    bottomLeft: alignRight
                         ? Radius.circular(cardCornerRadius)
                         : Radius.zero,
                     topLeft: Radius.circular(cardCornerRadius),
@@ -52,44 +54,59 @@ class MessageView extends StatelessWidget {
                   ),
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 200),
-                  color: isMyMessage ? theme.myMessage : theme.othersMessage,
-                  child: InkWell(
-                    onTap: () {},
-                    onLongPress: () {
-                      handler.deleteMessage(message);
-                    },
-                    splashColor: Colors.transparent,
-                    child: Container(
-                      margin: EdgeInsets.all(8.0),
-                      width: screenWidth(context) * 0.5,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(bottom: 5.0),
-                            child: isMyMessage
-                                ? null
-                                : Text(name,
-                                    style:
-                                        Theme.of(context).textTheme.headline6),
-                          ),
-                          Text(message.text),
-                          Row(
+                child: InkWell(
+                  onTap: () {},
+                  onLongPress: () {
+                    handler.deleteMessage(message);
+                  },
+                  // splashColor: Colors.transparent,
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 200),
+                    color: alignRight ? theme.myMessage : theme.othersMessage,
+                    width: screenWidth(context) * 0.6,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      verticalDirection: VerticalDirection.down,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                              top: alignRight ? 0.0 : 4.0, left: 8),
+                          child: alignRight
+                              ? null
+                              : Text(name,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(color: Colors.blue)),
+                        ),
+                        Container(
+                          child: message.imageFile == null
+                              ? null
+                              : Image.file(message.imageFile),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(message.text == null ? 0 : 8),
+                          child:
+                              message.text == null ? null : Text(message.text),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 4, horizontal: 8),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.max,
                             children: [
                               Text(
                                 "${message.dateTime.hour}:${message.dateTime.minute}",
                                 style: TextStyle(
-                                    color: isMyMessage
+                                    color: alignRight
                                         ? theme.themeData.primaryColor
                                         : Colors.grey[600],
                                     fontSize: 12),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 2.0),
-                                child: (!isMyMessage)
+                                child: (!alignRight)
                                     ? null
                                     : Icon(
                                         Icons.done_all,
@@ -98,9 +115,9 @@ class MessageView extends StatelessWidget {
                                       ),
                               )
                             ],
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class Message with ChangeNotifier {
@@ -5,8 +7,14 @@ class Message with ChangeNotifier {
   String _text;
   DateTime _dateTime;
   final AnimationController animController;
+  final File imageFile;
 
-  Message(String text, {DateTime dateTime, this.id, this.animController}) {
+  Message(
+      {String text,
+      DateTime dateTime,
+      this.id,
+      this.animController,
+      this.imageFile}) {
     this._text = text;
     this._dateTime = dateTime ?? DateTime.now();
   }

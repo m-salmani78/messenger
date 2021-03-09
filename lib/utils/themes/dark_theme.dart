@@ -19,14 +19,14 @@ class DarkTheme implements IThemeConfig {
   );
 
   @override
-  Color get bottomAppBar => Colors.black;
+  Color get scaffoldBackground => Colors.grey[850];
 
   @override
-  Color get textField => Colors.grey[700];
+  Color get bottomAppBar => Colors.grey[900];
 
   @override
-  Color get myMessage => themeData.accentColor;
+  Color get myMessage => themeData.accentColor.withOpacity(0.6);
 
   @override
-  Color get othersMessage => Colors.black;
+  Color get othersMessage => Colors.black.withOpacity(0.6);
 }

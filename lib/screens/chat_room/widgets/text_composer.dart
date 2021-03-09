@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:messenger/models/message_model.dart';
 import 'package:messenger/screens/chat_room/repos/message_manager.dart';
@@ -73,6 +75,8 @@ class _TextComposerState extends State<TextComposer>
                     fillColor: Theme.of(context).scaffoldBackgroundColor,
                     border:
                         customOutlineInputBorder(Theme.of(context).accentColor),
+                    enabledBorder:
+                        customOutlineInputBorder(Theme.of(context).accentColor),
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
@@ -84,19 +88,8 @@ class _TextComposerState extends State<TextComposer>
                     ? Icon(Icons.send)
                     : Icon(Icons.keyboard_voice),
                 onPressed: _isComposing
-                    ? () {
-                        var message = Message(
-                          _textController.text,
-                          animController: AnimationController(
-                              vsync: this,
-                              duration: Duration(milliseconds: 350)),
-                        );
-                        messageHandler.sendMessage(message);
-                        _textController.clear();
-                        setState(() {
-                          isComposing = false;
-                        });
-                      }
+                    ? () =>
+                        sendMessage(messageHandler, text: _textController.text)
                     : () {},
               ),
               SizeTransition(
@@ -123,9 +116,10 @@ class _TextComposerState extends State<TextComposer>
               ),
             ],
           ),
-          Container(
-            child: MessageOptionsView(animationController: expandAnimCtrl),
-          )
+          MessageOptionsView(
+            animationController: expandAnimCtrl,
+            sendMessage: (handler, file) => sendMessage(handler, file: file),
+          ),
         ],
       ),
     );
@@ -136,5 +130,19 @@ class _TextComposerState extends State<TextComposer>
       expandAnimCtrl.forward();
     else
       expandAnimCtrl.reverse();
+  }
+
+  sendMessage(MessageHandler handler, {File file, String text}) {
+    var message = Message(
+      text: text,
+      imageFile: file,
+      animController: AnimationController(
+          vsync: this, duration: Duration(milliseconds: 300)),
+    );
+    handler.sendMessage(message);
+    _textController.clear();
+    setState(() {
+      isComposing = false;
+    });
   }
 }

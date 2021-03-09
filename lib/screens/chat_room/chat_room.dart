@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:messenger/constants/constants.dart';
+import 'package:messenger/utils/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 
 import 'repos/message_manager.dart';
@@ -26,6 +26,7 @@ class ChatRoomScreen extends StatelessWidget {
             )
           ],
         ),
+        backgroundColor: themeConfig.theme.scaffoldBackground,
         body: Column(
           children: [
             Flexible(child: Body()),
