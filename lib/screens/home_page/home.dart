@@ -29,15 +29,15 @@ class HomePage extends StatelessWidget {
         floatingActionButton: ExpandableFab(distance: 84, children: [
           ActionButton(
             onPressed: () => {},
-            icon: const Icon(Icons.format_size),
+            icon: const Icon(Icons.person_add),
           ),
           ActionButton(
             onPressed: () => {},
-            icon: const Icon(Icons.insert_photo),
+            icon: const Icon(Icons.group_add),
           ),
           ActionButton(
             onPressed: () => {},
-            icon: const Icon(Icons.videocam),
+            icon: const Icon(Icons.add_call),
           ),
         ]),
       ),
