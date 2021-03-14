@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:messenger/utils/themes/theme_config.dart';
+import 'package:messenger/config/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 
 import 'repos/message_manager.dart';

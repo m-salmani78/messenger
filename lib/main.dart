@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/screens/home_page/home.dart';
-import 'package:messenger/utils/themes/theme_config.dart';
 import 'package:provider/provider.dart';
+
+import 'config/themes/theme_config.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:messenger/utils/themes/theme_config.dart';
+
+import 'theme_config.dart';
 
 class LightTheme implements IThemeConfig {
   static final LightTheme _instance = LightTheme._();

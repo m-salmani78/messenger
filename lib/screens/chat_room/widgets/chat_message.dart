@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:messenger/constants/app_constants.dart';
 import 'package:messenger/models/message_model.dart';
 import 'package:messenger/screens/chat_room/repos/message_manager.dart';
-import 'package:messenger/utils/themes/theme_config.dart';
+import 'package:messenger/config/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 
 class MessageView extends StatelessWidget {
