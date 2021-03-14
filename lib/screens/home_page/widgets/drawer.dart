@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:messenger/utils/themes/theme_config.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeConfig = Provider.of<ThemeConfig>(context);
     return Drawer(
       child: ListView(
         // Important: Remove any padding from the ListView.
@@ -10,6 +13,14 @@ class CustomDrawerView extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+            otherAccountsPictures: [
+              IconButton(
+                icon: Theme.of(context).brightness == Brightness.dark
+                    ? Icon(Icons.brightness_high)
+                    : Icon(Icons.brightness_3,color: Colors.white),
+                onPressed: () => themeConfig.toggleTheme(context),
+              )
+            ],
             currentAccountPicture: CircleAvatar(
               child: FlutterLogo(
                 size: 60,

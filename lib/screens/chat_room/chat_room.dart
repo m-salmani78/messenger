@@ -19,10 +19,8 @@ class ChatRoomScreen extends StatelessWidget {
           title: Text('Mahdi'),
           actions: [
             IconButton(
-              icon: Theme.of(context).brightness == Brightness.dark
-                  ? Icon(Icons.brightness_high)
-                  : Icon(Icons.brightness_3),
-              onPressed: () => themeConfig.toggleTheme(context),
+              icon: Icon(Icons.more_vert),
+              onPressed: () {},
             )
           ],
         ),
