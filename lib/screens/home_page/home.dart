@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:messenger/config/language/locale_keys.dart';
 import 'package:messenger/screens/home_page/widgets/drawer.dart';
 import 'package:messenger/screens/home_page/widgets/expandable_fab.dart';
 
@@ -9,7 +11,7 @@ class HomePage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('title'),
+          title: Text(LocaleKeys.title).tr(),
           bottom: TabBar(
             tabs: [
               Tab(icon: Icon(Icons.directions_car)),

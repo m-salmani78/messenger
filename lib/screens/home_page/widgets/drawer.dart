@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:messenger/config/language/locale_keys.dart';
 import 'package:messenger/config/themes/theme_config.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +19,7 @@ class CustomDrawerView extends StatelessWidget {
               IconButton(
                 icon: Theme.of(context).brightness == Brightness.dark
                     ? Icon(Icons.brightness_high)
-                    : Icon(Icons.brightness_3,color: Colors.white),
+                    : Icon(Icons.brightness_3, color: Colors.white),
                 onPressed: () => themeConfig.toggleTheme(context),
               )
             ],
@@ -34,7 +36,7 @@ class CustomDrawerView extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.account_circle),
-            title: Text('اطلاعات کاربری'),
+            title: Text(LocaleKeys.account_info).tr(),
             onTap: () {
               // Update the state of the app.
               // ...
@@ -43,18 +45,22 @@ class CustomDrawerView extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.message),
-            title: Text('پیام ها'),
+            title: Text(LocaleKeys.msg).tr(),
             onTap: () {},
           ),
           ListTile(
             leading: Icon(Icons.bookmark),
-            title: Text('نشان شده ها'),
+            title: Text(LocaleKeys.msg_pinned.tr()),
             onTap: () {},
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('تنظیمات'),
+            title: Text(LocaleKeys.settings.tr()),
             onTap: () {
+              if (context.locale.languageCode == Locale('en').languageCode)
+                context.setLocale(Locale('fa'));
+              else
+                context.setLocale(Locale('en'));
               Navigator.pop(context);
             },
           ),
@@ -65,12 +71,12 @@ class CustomDrawerView extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.person_add),
-            title: Text('دعوت دوستان'),
+            title: Text(LocaleKeys.invite_friends).tr(),
             onTap: () {},
           ),
           ListTile(
             leading: Icon(Icons.help),
-            title: Text('پرسش های متداول'),
+            title: Text(LocaleKeys.faq).tr(),
             onTap: () {},
           ),
         ],
