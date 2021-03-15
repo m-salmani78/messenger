@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart' as localization;
 
 Duration _duration = const Duration(milliseconds: 300);
 
@@ -61,9 +62,11 @@ class _ExpandableFabState extends State<ExpandableFab>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return SizedBox(
+      width: 56 / 2 + widget.distance + 40 / 2,
+      height: 56 / 2 + widget.distance + 40 / 2,
       child: Stack(
-        alignment: Alignment.bottomRight,
+        alignment: AlignmentDirectional.bottomEnd,
         clipBehavior: Clip.none,
         children: [
           _buildTapToCloseFab(),
@@ -171,6 +174,7 @@ class _ExpandingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _isLTR = context.locale.languageCode == Locale("en").languageCode;
     return AnimatedBuilder(
       animation: progress,
       builder: (context, child) {
@@ -178,8 +182,9 @@ class _ExpandingActionButton extends StatelessWidget {
           directionInDegrees * (math.pi / 180.0),
           progress.value * maxDistance,
         );
-        return Positioned(
-          right: 4.0 + offset.dx,
+        return Positioned.directional(
+          textDirection: (_isLTR) ? TextDirection.ltr : TextDirection.rtl,
+          end: 4.0 + offset.dx,
           bottom: 4.0 + offset.dy,
           child: Transform.rotate(
             angle: (1.0 - progress.value) * math.pi / 2,
