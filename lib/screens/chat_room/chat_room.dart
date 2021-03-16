@@ -13,29 +13,32 @@ class ChatRoomScreen extends StatelessWidget {
     final themeConfig = Provider.of<ThemeConfig>(context);
     return ChangeNotifierProvider(
       create: (context) => MessageHandler(OfflineMessageHandler()),
-      child: Scaffold(
-        appBar: AppBar(
-          titleTextStyle: TextStyle(color: Colors.white),
-          title: Text('Mahdi'),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
-            )
-          ],
-        ),
-        backgroundColor: themeConfig.theme.scaffoldBackground,
-        body: Column(
-          children: [
-            Flexible(child: Body()),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                  color: themeConfig.theme.bottomAppBar),
-              child: TextComposer(),
-              padding: EdgeInsets.symmetric(vertical: 4),
-            ),
-          ],
+      child: Directionality(
+        textDirection: TextDirection.ltr,
+        child: Scaffold(
+          appBar: AppBar(
+            titleTextStyle: TextStyle(color: Colors.white),
+            title: Text('Mahdi'),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.more_vert),
+                onPressed: () {},
+              )
+            ],
+          ),
+          backgroundColor: themeConfig.theme.scaffoldBackground,
+          body: Column(
+            children: [
+              Flexible(child: Body()),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                decoration: BoxDecoration(
+                    color: themeConfig.theme.bottomAppBar),
+                child: TextComposer(),
+                padding: EdgeInsets.symmetric(vertical: 4),
+              ),
+            ],
+          ),
         ),
       ),
     );
