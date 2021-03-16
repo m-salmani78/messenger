@@ -8,10 +8,11 @@ import 'config/themes/theme_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  IThemeConfig theme = await ThemeConfig.initialTheme();
 
   runApp(
     EasyLocalization(
-      child: MyApp(),
+      child: MyApp(theme: theme),
       supportedLocales: [
         Locale("fa"),
         Locale("en"),
@@ -23,10 +24,14 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final IThemeConfig theme;
+
+  const MyApp({required this.theme});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ThemeConfig(),
+      create: (context) => ThemeConfig(theme),
       child: Consumer<ThemeConfig>(
         builder: (context, state, child) {
           return MaterialApp(
