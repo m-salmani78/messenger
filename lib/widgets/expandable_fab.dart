@@ -88,7 +88,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           onPressed: _toggle,
           child: Icon(
             Icons.close,
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).accentColor,
           ),
         ),
       ),

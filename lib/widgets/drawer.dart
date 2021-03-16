@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:messenger/config/language/locale_keys.dart';
 import 'package:messenger/config/themes/theme_config.dart';
+import 'package:messenger/screens/chat_room/chat_room.dart';
+import 'package:messenger/utils/helpers/color_helper.dart';
 import 'package:provider/provider.dart';
 
 class CustomDrawerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeConfig = Provider.of<ThemeConfig>(context);
+    final background = Theme.of(context).accentColor;
     return Drawer(
       child: ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+            decoration: BoxDecoration(color: background),
             otherAccountsPictures: [
               IconButton(
                 icon: Theme.of(context).brightness == Brightness.dark
@@ -31,8 +34,14 @@ class CustomDrawerView extends StatelessWidget {
               backgroundColor: Colors.white,
               radius: 30,
             ),
-            accountName: Text('محمد مهدی سلمانی'),
-            accountEmail: Text('09103839063'),
+            accountName: Text(
+              'محمد مهدی سلمانی',
+              style: TextStyle(color: ColorHelper.contrastColor(background)),
+            ),
+            accountEmail: Text(
+              '09103839063',
+              style: TextStyle(color: ColorHelper.contrastColor(background)),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.account_circle),
@@ -46,7 +55,12 @@ class CustomDrawerView extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.message),
             title: Text(LocaleKeys.msg).tr(),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ChatRoomScreen();
+              }));
+            },
           ),
           ListTile(
             leading: Icon(Icons.bookmark),

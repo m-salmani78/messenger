@@ -11,7 +11,7 @@ class DarkTheme implements IThemeConfig {
 
   @override
   ThemeData themeData = ThemeData(
-    accentColor: Colors.deepPurpleAccent,
+    accentColor: Colors.deepPurpleAccent[100],
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.black,
     ),

@@ -12,6 +12,8 @@ class LightTheme implements IThemeConfig {
   @override
   ThemeData themeData = ThemeData(
     primarySwatch: Colors.deepPurple,
+    primaryColor: Colors.white,
+    accentColor: Colors.deepPurple,
     scaffoldBackgroundColor: Colors.white,
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.white,
