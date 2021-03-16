@@ -35,7 +35,7 @@ class CustomDrawerView extends StatelessWidget {
               radius: 30,
             ),
             accountName: Text(
-              'محمد مهدی سلمانی',
+              LocaleKeys.name.tr(),
               style: TextStyle(color: ColorHelper.contrastColor(background)),
             ),
             accountEmail: Text(

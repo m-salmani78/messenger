@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/screens/messenger_page/messenger_page.dart';
-import 'package:messenger/widgets/custom_text_field.dart';
+import 'package:messenger/screens/whats_hot_page/whats_hot_page.dart';
 
 class MainScreen extends StatefulWidget {
   static List<Widget> _widgetOptions = <Widget>[
@@ -10,16 +10,10 @@ class MainScreen extends StatefulWidget {
       ),
     ),
     Center(
-      child: CustomTextField(
-          // 'Index 1: Business',
-          ),
+      child: Text('Index 0: Notification'),
     ),
     MessengerScreen(),
-    Center(
-      child: Text(
-        'Index 0: Search',
-      ),
-    ),
+    WhatsHotScreen(),
     Center(
       child: Text(
         'Index 0: Home',
@@ -65,9 +59,9 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Messenger',
           ),
           BottomNavigationBarItem(
-            activeIcon: Icon(Icons.search_outlined),
-            icon: Icon(Icons.search),
-            label: 'Search',
+            activeIcon: Icon(Icons.whatshot),
+            icon: Icon(Icons.whatshot_outlined),
+            label: 'Whats Hot',
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.home),

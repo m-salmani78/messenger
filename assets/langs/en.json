@@ -1,10 +1,17 @@
 {
   "app_name": "Messenger",
+  "name": "Mohammad Mahdi Salmani",
   "title": "My Messenger",
   "account_info": "Account info",
   "msg": "Messages",
   "msg_pinned": "Pinned",
   "settings": "Settings",
   "invite_friends": "Invite friends",
-  "faq": "FAQ"
+  "faq": "FAQ",
+  "search": "Search",
+  "messenger": {
+    "chats": "Chats",
+    "groups": "Groups",
+    "calls": "Calls"
+  }
 }

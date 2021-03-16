@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:messenger/widgets/custom_text_field.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:messenger/config/language/locale_keys.dart';
+import 'package:messenger/widgets/custom_app_bar.dart';
 import 'package:messenger/widgets/drawer.dart';
 
 class MessengerScreen extends StatelessWidget {
@@ -8,23 +11,14 @@ class MessengerScreen extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Theme.of(context).accentColor),
-          title: Padding(
-            padding: const EdgeInsets.only(top:4.0),
-            child: CustomTextField(hintText: "Search...",),
-          ),
-          actions: [
-            IconButton(icon: Icon(Icons.add), onPressed: (){})
+        appBar: CustomAppBar(
+          color: Theme.of(context).accentColor,
+          actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})],
+          tabs: [
+            Tab(text: LocaleKeys.messenger.tr(gender: "chats")),
+            Tab(text: LocaleKeys.messenger.tr(gender: "groups")),
+            Tab(text: LocaleKeys.messenger.tr(gender: "calls")),
           ],
-          bottom: TabBar(
-            labelColor: Theme.of(context).accentColor,
-            tabs: [
-              Tab(text: "Chats",),
-              Tab(text: "Groups",),
-              Tab(text: "Calls"),
-            ],
-          ),
         ),
         body: TabBarView(
           children: [
