@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/home_page/home.dart';
+import 'screens/main_page/main_page.dart';
 import 'config/themes/theme_config.dart';
 
 void main() async {
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             theme: state.theme.themeData,
-            home: HomePage(),
+            home: MainScreen(),
           );
         },
       ),
