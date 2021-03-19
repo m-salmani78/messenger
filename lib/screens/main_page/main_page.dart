@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:messenger/screens/home_page/home_page.dart';
 import 'package:messenger/screens/messenger_page/messenger_page.dart';
 import 'package:messenger/screens/whats_hot_page/whats_hot_page.dart';
 
@@ -14,11 +15,7 @@ class MainScreen extends StatefulWidget {
     ),
     MessengerScreen(),
     WhatsHotScreen(),
-    Center(
-      child: Text(
-        'Index 0: Home',
-      ),
-    ),
+    HomeScreen(),
   ];
 
   @override
